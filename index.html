@@ -3321,6 +3321,34 @@
         console.log('🥚 国际卤蛋贸易有限公司 - 官网已就绪 | International Marinated Egg Trading Co., Ltd');        console.log('   Language: ' + currentLang.toUpperCase() + ' | 切换语言点击导航栏按钮');
         console.log('   Power By CloudFlare | QianWen | ChatGPT | DeepSeek');
     </script>
+    <script>
+    // 访问统计上报 → 导航页后台（funthing.me/admin 的访问统计）
+    (function(){
+        try {
+            var ua = navigator.userAgent || '';
+            var os = '未知';
+            if (/iPhone|iPad|iPod/.test(ua)) { os = 'iPhone'; }
+            else if (/Android/.test(ua)) { os = 'Android'; }
+            else if (/Windows/.test(ua)) { os = 'Windows'; }
+            else if (/Macintosh|Mac OS X/.test(ua)) { os = 'Mac'; }
+            else if (/Linux/.test(ua)) { os = 'Linux'; }
+            var iosVer = (ua.match(/OS (\d+)[_.](\d+)/) || []);
+            var ver = iosVer[1] ? (iosVer[1] + '.' + iosVer[2]) : '';
+            var device = os;
+            if (os === 'iPhone' && ver) device = 'iPhone iOS ' + ver;
+            fetch('https://funthing.me/api/visit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    site: 'zhfld.dpdns.org',
+                    device: device,
+                    path: location.pathname,
+                    referer: document.referrer || ''
+                })
+            }).catch(function(){});
+        } catch (e) {}
+    })();
+    </script>
 </body>
 
 <!-- Mirrored from https://daohang-s6k.pages.dev/zhf by HTTrack Website Copier/3.x [XR&CO], Fri, 18 Sep 2026 11:46:28 GMT -->
